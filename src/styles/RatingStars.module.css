@@ -1,0 +1,39 @@
+/* Styles five decorative stars with pencil-like filled details. */
+.stars {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  color: #424739;
+}
+
+.star {
+  width: 25px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.1;
+}
+
+.star[data-filled="true"] {
+  fill: currentColor;
+}
+
+.star .scribble {
+  fill: none;
+  stroke: #939781;
+  stroke-width: 0.9;
+}
+
+@media (max-width: 360px) {
+  .stars {
+    gap: 3px;
+  }
+
+  .star {
+    width: 19px;
+    height: 24px;
+  }
+}

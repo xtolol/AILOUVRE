@@ -1,0 +1,60 @@
+/* Centers the decorative arrows, handwritten count and italic Inter caption. */
+.details {
+  padding-inline: 20px;
+  text-align: center;
+}
+
+.position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.arrow {
+  width: 60px;
+  height: 32px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.counter {
+  min-width: 64px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.modelName {
+  margin: 24px 0 16px;
+  font-family: var(--font-model);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .position {
+    gap: 16px;
+  }
+
+  .modelName {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+}

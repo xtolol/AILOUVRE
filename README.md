@@ -1,16 +1,18 @@
 # AILOUVRE
 
-A Next.js App Router project for a daily public AI art gallery, using React and plain JavaScript. The homepage is being implemented as a **static frontend preview** of the AILOUVRE prototype, in reviewable steps. Server functionality remains unimplemented.
+A Next.js App Router project for a daily public AI art gallery, using React and plain JavaScript. The homepage implements a **static frontend preview** of the AILOUVRE prototype. Server functionality remains unimplemented.
 
 ## Frontend preview
 
-The first two review checkpoints implement the cream canvas, existing collage logo, handwritten exhibition details, decorative green theme label and five-frame artwork composition. The page displays the prototype's fixed exhibition: **001 · 19 October 2026 · Botanical Dreams**. On narrow screens the exhibition details stack beneath the logo.
+The homepage includes the cream canvas, existing collage logo, handwritten exhibition details, decorative green theme label and five-frame artwork composition. The page displays the prototype's fixed exhibition: **001 · 19 October 2026 · Botanical Dreams**. On narrow screens the exhibition details stack beneath the logo.
 
 The static artwork composition has a larger central lavender image with a tape decoration, tilted white neighbour frames and partially cropped outer frames. It scales down on mobile while keeping glimpses of the adjacent artwork. Five presentation entries reuse three locally bundled botanical sample photos; sources are recorded in `public/artworks/SOURCES.md`. These placeholders are not model-generated gallery outputs.
 
-The model caption, decorative arrows/counter and ratings will follow after this checkpoint is reviewed. The planned arrows, theme chevron and stars are decorative only; navigation, dropdowns and voting are outside this static preview. The homepage does not fetch exhibition data or call the server stubs. The dated gallery route still renders a blank shell.
+Beneath the featured image, decorative hand-drawn arrows flank the **03 / 05** counter. The italic **GPT Image 2.5 Sunburst** caption uses Inter. The sample Jev row has four filled stars and one empty star; the personal-rating row has five empty stars. These are fixed presentation values, not real model judgments, a scoring policy or saved votes. The model caption is illustrative and does not identify the source of the sample photo.
 
-Preview content lives in `src/data/demoGallery.js`, separate from the future server contracts. Component styles and global defaults live in `src/styles`. The main font is **Gloria Hallelujah**; **Inter** is bundled in upright and italic styles for the forthcoming model-name caption. Both fonts are distributed with their SIL Open Font Licenses in `public/fonts`; no external font request is needed at runtime.
+The arrows, theme/rating chevrons and stars are decorative only: they are not buttons, dropdowns or keyboard tab stops. Navigation and voting are outside this static preview. Screen readers receive the artwork position and star-value descriptions; decorative SVGs are hidden. The homepage does not fetch exhibition data or call the server stubs. The dated gallery route still renders a blank shell.
+
+Preview content lives in `src/data/demoGallery.js`, separate from the future server contracts. The featured entry supplies the model caption and sample ratings; its identifier selects the frame and determines the counter position. Component styles and global defaults live in `src/styles`. The main font is **Gloria Hallelujah**; **Inter** is bundled in upright and italic styles for the model-name caption. Both fonts are distributed with their SIL Open Font Licenses in `public/fonts`; no external font request is needed at runtime.
 
 ## Run locally
 
@@ -36,7 +38,7 @@ npm run start
 | Folder | Role |
 | --- | --- |
 | `src/app` | Shared document layout, static homepage preview, blank dated page and unconnected HTTP route handlers. |
-| `src/components` | Site/exhibition headers, framed artwork composition and placeholders for the remaining gallery interface. |
+| `src/components` | Gallery headers, framed artwork composition, decorative artwork details and sample star ratings; date navigation remains a placeholder. |
 | `src/data` | Fixed frontend preview content, separate from server data contracts. |
 | `src/styles` | Shared canvas/font defaults and component CSS modules. |
 | `public` | Existing logo, local sample artwork with sources and local fonts with licenses. |
@@ -76,7 +78,7 @@ See [the architecture notes](docs/architecture.md) for future interfaces and API
 
 ## Manual frontend review
 
-Feature testing is left to developers. For the first two checkpoints:
+Feature testing is left to developers. For the completed static preview:
 
 - At a desktop width near 1280px, compare the centered logo, cream canvas, exhibition/date on the left and theme strip on the right with the prototype.
 - At mobile widths such as 375px and 390px, confirm the logo fits, exhibition details stack and the page has no horizontal scrolling.
@@ -84,5 +86,8 @@ Feature testing is left to developers. For the first two checkpoints:
 - Confirm the theme label is decorative: it has no button behavior, pointer cursor or keyboard tab stop.
 - Compare the large central frame, white borders, tape, neighbour rotations and outer image crops with the prototype. Sample photos are intentionally replaceable.
 - On mobile, confirm the center artwork stays square, adjacent images remain partly visible and cropped frames do not cause horizontal page scrolling.
+- Confirm the counter reads `03 / 05`, the model caption uses italic Inter and Jev/personal ratings show four/zero filled stars respectively.
+- At widths down to 280px, confirm the caption and both rating rows fit without horizontal page scrolling.
+- Confirm the arrows, rating chevron and stars have no click or keyboard behavior. A screen reader should announce the artwork position, sample Jev score and unrated personal row without reading each SVG.
 
 `npm run lint` and `npm run build` remain available for code and production-compilation checks. The architecture notes describe the future server boundaries; their original blank-homepage description predates this preview.

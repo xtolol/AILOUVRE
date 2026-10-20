@@ -28,6 +28,15 @@ export const demoExhibition = {
  * @property {string} alt A description of the image content.
  * @property {number} width The source image width in pixels.
  * @property {number} height The source image height in pixels.
+ * @property {string} [modelName] The prototype's illustrative model caption.
+ * @property {DemoRatings} [ratings] Fixed sample ratings for the featured entry.
+ */
+
+/**
+ * Display-only star values, unrelated to Jev's future judging dimensions.
+ * @typedef {Object} DemoRatings
+ * @property {number} jev The sample Jev star count shown in the prototype.
+ * @property {number} personal The sample personal star count; zero means unrated.
  */
 
 /** @type {DemoArtwork[]} */
@@ -52,6 +61,8 @@ export const demoArtworks = [
     alt: "Rows of purple lavender beneath a warm sunset sky",
     width: 1000,
     height: 1000,
+    modelName: "GPT Image 2.5 Sunburst",
+    ratings: { jev: 4, personal: 0 },
   },
   {
     id: "foliage-04",

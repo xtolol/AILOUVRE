@@ -1,0 +1,60 @@
+/* Aligns handwritten rating labels, star graphics and the decorative chevron. */
+.ratings {
+  width: 328px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  min-height: 32px;
+}
+
+.row + .row {
+  margin-top: 12px;
+}
+
+.label {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0;
+}
+
+.chevron {
+  flex-shrink: 0;
+  width: 20px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+@media (max-width: 360px) {
+  .row {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .value {
+    gap: 14px;
+  }
+
+  .chevron {
+    width: 16px;
+  }
+}
