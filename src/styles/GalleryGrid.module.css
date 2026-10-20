@@ -1,0 +1,59 @@
+/* Centers a static five-frame composition and crops its outer edges safely. */
+.viewport {
+  --featured-size: min(400px, 76vw);
+  --neighbour-size: calc(var(--featured-size) * 0.72);
+  --outer-size: calc(var(--featured-size) * 0.56);
+  --frame-gap: clamp(16px, 2.5vw, 32px);
+  width: 100%;
+  margin-top: 6px;
+  padding-block: 8px 14px;
+  overflow: hidden;
+  overflow: clip;
+}
+
+.strip {
+  position: relative;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: var(--frame-gap);
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform: translateX(-50%);
+}
+
+.item {
+  flex-shrink: 0;
+  width: var(--neighbour-size);
+}
+
+.item[data-position="-2"] {
+  width: var(--outer-size);
+  transform: rotate(-3deg);
+}
+
+.item[data-position="-1"] {
+  transform: rotate(3deg);
+}
+
+.item[data-position="0"] {
+  z-index: 1;
+  width: var(--featured-size);
+}
+
+.item[data-position="1"] {
+  transform: rotate(-2.5deg);
+}
+
+.item[data-position="2"] {
+  width: var(--outer-size);
+  transform: rotate(3deg);
+}
+
+@media (max-width: 600px) {
+  .viewport {
+    margin-top: 28px;
+  }
+}

@@ -1,10 +1,15 @@
 /*
  * Composes the static gallery preview from local presentation data.
- * The first review checkpoint includes the site and exhibition headers.
+ * The second review checkpoint adds the framed artwork composition.
  */
 import ExhibitionHeader from "../components/ExhibitionHeader.jsx";
+import GalleryGrid from "../components/GalleryGrid.jsx";
 import SiteHeader from "../components/SiteHeader.jsx";
-import { demoExhibition } from "../data/demoGallery.js";
+import {
+  demoArtworks,
+  demoExhibition,
+  demoFeaturedArtworkId,
+} from "../data/demoGallery.js";
 import styles from "../styles/GalleryPage.module.css";
 
 /**
@@ -17,6 +22,10 @@ export default function HomePage({ searchParams }) {
     <main className={styles.galleryPage}>
       <SiteHeader />
       <ExhibitionHeader exhibition={demoExhibition} />
+      <GalleryGrid
+        artworks={demoArtworks}
+        featuredArtworkId={demoFeaturedArtworkId}
+      />
     </main>
   );
 }

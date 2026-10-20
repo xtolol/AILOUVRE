@@ -19,3 +19,54 @@ export const demoExhibition = {
   dateLabel: "19 October 2026",
   theme: "Botanical Dreams",
 };
+
+/**
+ * A replaceable local photo used to preview the artwork frame layout.
+ * @typedef {Object} DemoArtwork
+ * @property {string} id The unique presentation entry identifier.
+ * @property {string} src The locally bundled image path.
+ * @property {string} alt A description of the image content.
+ * @property {number} width The source image width in pixels.
+ * @property {number} height The source image height in pixels.
+ */
+
+/** @type {DemoArtwork[]} */
+export const demoArtworks = [
+  {
+    id: "foliage-01",
+    src: "/artworks/botanical-foliage.jpg",
+    alt: "Overlapping green leaves against a dark botanical background",
+    width: 900,
+    height: 900,
+  },
+  {
+    id: "blossoms-02",
+    src: "/artworks/botanical-blossoms.jpg",
+    alt: "Golden California poppies against a turquoise blue sky",
+    width: 900,
+    height: 900,
+  },
+  {
+    id: "lavender-03",
+    src: "/artworks/lavender-field.jpg",
+    alt: "Rows of purple lavender beneath a warm sunset sky",
+    width: 1000,
+    height: 1000,
+  },
+  {
+    id: "foliage-04",
+    src: "/artworks/botanical-foliage.jpg",
+    alt: "Overlapping green leaves against a dark botanical background",
+    width: 900,
+    height: 900,
+  },
+  {
+    id: "blossoms-05",
+    src: "/artworks/botanical-blossoms.jpg",
+    alt: "Golden California poppies against a turquoise blue sky",
+    width: 900,
+    height: 900,
+  },
+];
+
+export const demoFeaturedArtworkId = "lavender-03";
