@@ -1,0 +1,28 @@
+/* Sizes and centers the existing collage logo without altering its artwork. */
+.siteHeader {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 44px;
+  padding-inline: 24px;
+}
+
+.heading {
+  margin: 0;
+  line-height: 1;
+}
+
+.logo {
+  width: 266px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .siteHeader {
+    margin-bottom: 32px;
+  }
+
+  .logo {
+    width: 230px;
+  }
+}

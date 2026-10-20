@@ -1,6 +1,14 @@
 # AILOUVRE
 
-A Next.js App Router scaffold for a daily public AI art gallery, using React and plain JavaScript. **This project contains function stubs only.** Both page routes intentionally render a blank document shell.
+A Next.js App Router project for a daily public AI art gallery, using React and plain JavaScript. The homepage is being implemented as a **static frontend preview** of the AILOUVRE prototype, in reviewable steps. Server functionality remains unimplemented.
+
+## Frontend preview
+
+The first review checkpoint implements the cream canvas, existing collage logo, handwritten exhibition details and decorative green theme label. It displays the prototype's fixed exhibition: **001 · 19 October 2026 · Botanical Dreams**. On narrow screens the exhibition details stack beneath the logo.
+
+Artwork composition and ratings will follow after this checkpoint is reviewed. The planned arrows, theme chevron and stars are decorative only; navigation, dropdowns and voting are outside this static preview. The homepage does not fetch exhibition data or call the server stubs. The dated gallery route still renders a blank shell.
+
+Preview content lives in `src/data/demoGallery.js`, separate from the future server contracts. Component styles and global defaults live in `src/styles`. The main font is **Gloria Hallelujah**; **Inter** is bundled in upright and italic styles for the forthcoming model-name caption. Both fonts are distributed with their SIL Open Font Licenses in `public/fonts`; no external font request is needed at runtime.
 
 ## Run locally
 
@@ -11,7 +19,7 @@ npm ci
 npm run dev
 ```
 
-Open [the homepage](http://localhost:3000) or [a dated page](http://localhost:3000/gallery/2026-10-18). A blank page is the expected result. No API keys or environment file are needed. Stop the server with Ctrl+C.
+Open [the homepage](http://localhost:3000) to review the static frontend, or [a dated page](http://localhost:3000/gallery/2026-10-18) to see the reserved blank shell. No API keys or environment file are needed. Stop the server with Ctrl+C.
 
 ```sh
 npm run lint
@@ -25,8 +33,11 @@ npm run start
 
 | Folder | Role |
 | --- | --- |
-| `src/app` | Required document layout, blank daily and dated pages, and unconnected HTTP route handlers. |
-| `src/components` | Null-rendering placeholders for the future gallery interface. |
+| `src/app` | Shared document layout, static homepage preview, blank dated page and unconnected HTTP route handlers. |
+| `src/components` | Implemented site/exhibition headers and placeholders for the remaining gallery interface. |
+| `src/data` | Fixed frontend preview content, separate from server data contracts. |
+| `src/styles` | Shared canvas/font defaults and component CSS modules. |
+| `public` | Existing logo and locally bundled handwriting font with its license. |
 | `src/config` | Selected model identifiers and the names of judging dimensions. |
 | `src/contracts` | JSDoc-only descriptions of briefs, artwork, judgments, exhibitions and usage. |
 | `src/server/openrouter` | Server-only stubs for shared requests, image generation, Jev decisions and text generation. |
@@ -57,10 +68,17 @@ All non-rendering functions throw the same error when called with their document
 
 Dates are reserved as `YYYY-MM-DD`, with `Europe/London` defining the future daily boundary. No parsing, timezone conversion or scheduling logic exists.
 
-There is no database, storage vendor, deployed scheduler, authentication flow, voting, leaderboard, image asset, mock dataset or paid API call. Installing dependencies and running the framework are the only working development operations. No automated feature tests are included for this stub-only deliverable.
+There is no database, storage vendor, deployed scheduler, authentication flow, voting, leaderboard or paid API call. Fixed frontend preview metadata is not published exhibition data. No automated feature tests are included, following `AGENTS.md`.
 
 See [the architecture notes](docs/architecture.md) for future interfaces and API boundaries.
 
-## Scaffold verification
+## Manual frontend review
 
-Verified without API keys: reproducible installation from the lockfile, lint, production build and production start. Both page routes returned HTTP 200 with AILOUVRE metadata and no visible application markup; both API routes returned HTTP 500 as documented. Opening role comments were checked in all 28 authored code files, and all 25 placeholder function bodies were checked to contain only their specified null return or unimplemented error. Source inspection found no application network requests, credential reads, timers or data writes. Browser automation could not launch reliably in the verification environment, so blank-page checks used the server-rendered HTML and source inspection rather than visual browser confirmation.
+Feature testing is left to developers. For the first checkpoint:
+
+- At a desktop width near 1280px, compare the centered logo, cream canvas, exhibition/date on the left and theme strip on the right with the prototype.
+- At mobile widths such as 375px and 390px, confirm the logo fits, exhibition details stack and the page has no horizontal scrolling.
+- Confirm the handwriting font loads locally, the logo has an accessible name and the date is readable.
+- Confirm the theme label is decorative: it has no button behavior, pointer cursor or keyboard tab stop.
+
+`npm run lint` and `npm run build` remain available for code and production-compilation checks. The architecture notes describe the future server boundaries; their original blank-homepage description predates this preview.

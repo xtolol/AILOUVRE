@@ -2,7 +2,7 @@
  * Supplies AILOUVRE's required document shell and page metadata.
  * Gallery rendering and data access belong to future page implementations.
  */
-import "./globals.css";
+import "../styles/globals.css";
 
 export const metadata = {
   title: "AILOUVRE",
@@ -10,8 +10,9 @@ export const metadata = {
 };
 
 /**
- * @param {{ children: import("react").ReactNode }} props
- * @returns {import("react").ReactElement}
+ * Wraps the gallery routes in the shared document and local global styles.
+ * @param {{ children: import("react").ReactNode }} props The active route content.
+ * @returns {import("react").ReactElement} The root HTML document.
  */
 export default function RootLayout({ children }) {
   return (

@@ -1,0 +1,53 @@
+/* Supplies the local handwriting font and shared gallery canvas defaults. */
+@font-face {
+  font-family: "Gloria Hallelujah";
+  src: url("/fonts/GloriaHallelujah-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Variable.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Italic-Variable.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --color-canvas: #f8f7f2;
+  --color-ink: #292b26;
+  --color-muted: #7c8076;
+  --color-theme: #e5edc8;
+  --font-handwriting: "Gloria Hallelujah", "Segoe Print", cursive;
+  --font-model: "Inter", Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-handwriting);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 280px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+}

@@ -1,0 +1,59 @@
+/* Arranges the handwritten exhibition details and pale green theme strip. */
+.exhibitionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: calc(100% - 64px);
+  max-width: 1080px;
+  margin-inline: auto;
+  font-family: var(--font-handwriting);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.identity {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+}
+
+.date {
+  color: var(--color-muted);
+}
+
+.theme {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 5px 7px 5px 12px;
+  background: var(--color-theme);
+  transform: rotate(-0.6deg);
+}
+
+.chevron {
+  width: 24px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+@media (max-width: 600px) {
+  .exhibitionHeader {
+    flex-direction: column;
+    gap: 18px;
+    width: calc(100% - 40px);
+    font-size: 14px;
+  }
+
+  .identity {
+    justify-content: center;
+  }
+}
