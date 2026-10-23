@@ -28,8 +28,8 @@ export const demoExhibition = {
  * @property {string} alt A description of the image content.
  * @property {number} width The source image width in pixels.
  * @property {number} height The source image height in pixels.
- * @property {string} [modelName] The prototype's illustrative model caption.
- * @property {DemoRatings} [ratings] Fixed sample ratings for the featured entry.
+ * @property {string} modelName The prototype's illustrative model caption.
+ * @property {DemoRatings} ratings Fixed sample ratings for this preview entry.
  */
 
 /**
@@ -47,6 +47,8 @@ export const demoArtworks = [
     alt: "Overlapping green leaves against a dark botanical background",
     width: 900,
     height: 900,
+    modelName: "Grok Imagine Image 2.0",
+    ratings: { jev: 4, personal: 0 },
   },
   {
     id: "blossoms-02",
@@ -54,6 +56,8 @@ export const demoArtworks = [
     alt: "Golden California poppies against a turquoise blue sky",
     width: 900,
     height: 900,
+    modelName: "Nano Banana 2.1",
+    ratings: { jev: 4, personal: 0 },
   },
   {
     id: "lavender-03",
@@ -70,6 +74,8 @@ export const demoArtworks = [
     alt: "Overlapping green leaves against a dark botanical background",
     width: 900,
     height: 900,
+    modelName: "Grok Imagine Image 2.0",
+    ratings: { jev: 4, personal: 0 },
   },
   {
     id: "blossoms-05",
@@ -77,6 +83,8 @@ export const demoArtworks = [
     alt: "Golden California poppies against a turquoise blue sky",
     width: 900,
     height: 900,
+    modelName: "Nano Banana 2.1",
+    ratings: { jev: 4, personal: 0 },
   },
 ];
 

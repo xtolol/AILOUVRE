@@ -1,0 +1,10 @@
+/* Shares the movement duration and styles the frontend carousel's empty state. */
+.carousel {
+  /* Keep this duration aligned with the navigation lock in GalleryCarousel. */
+  --carousel-duration: 450ms;
+}
+
+.empty {
+  margin: 48px 20px;
+  text-align: center;
+}

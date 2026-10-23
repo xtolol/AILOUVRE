@@ -1,5 +1,5 @@
 /*
- * Presents a local preview image in a white artwork frame with optional tape.
+ * Presents a local preview image in a white artwork frame with fading tape.
  */
 import Image from "next/image";
 import styles from "../styles/ArtworkCard.module.css";
@@ -18,14 +18,11 @@ export default function ArtworkCard({ artwork, featured = false }) {
         alt={artwork.alt}
         width={artwork.width}
         height={artwork.height}
-        sizes={
-          featured
-            ? "(max-width: 526px) 76vw, 400px"
-            : "(max-width: 526px) 55vw, 288px"
-        }
+        sizes="(max-width: 526px) 76vw, 400px"
         preload={featured}
+        loading={featured ? undefined : "eager"}
       />
-      {featured && <span className={styles.tape} aria-hidden="true" />}
+      <span className={styles.tape} aria-hidden="true" />
     </figure>
   );
 }

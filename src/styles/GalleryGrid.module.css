@@ -1,9 +1,10 @@
-/* Centers a static five-frame composition and crops its outer edges safely. */
+/* Animates stable frames between five visible positions and two hidden buffers. */
 .viewport {
   --featured-size: min(400px, 76vw);
-  --neighbour-size: calc(var(--featured-size) * 0.72);
-  --outer-size: calc(var(--featured-size) * 0.56);
   --frame-gap: clamp(16px, 2.5vw, 32px);
+  --near-offset: calc(var(--featured-size) * 0.86 + var(--frame-gap));
+  --outer-offset: calc(var(--featured-size) * 1.5 + var(--frame-gap) * 2);
+  --buffer-offset: calc(var(--featured-size) * 2.06 + var(--frame-gap) * 3);
   width: 100%;
   margin-top: 6px;
   padding-block: 8px 0;
@@ -13,43 +14,79 @@
 
 .strip {
   position: relative;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  gap: var(--frame-gap);
-  width: max-content;
+  height: var(--featured-size);
   margin: 0;
   padding: 0;
   list-style: none;
-  transform: translateX(-50%);
 }
 
 .item {
-  flex-shrink: 0;
-  width: var(--neighbour-size);
+  --offset: 0px;
+  --scale: 1;
+  --rotation: 0deg;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: var(--featured-size);
+  aspect-ratio: 1;
+  opacity: 1;
+  transform: translate(-50%, -50%) translateX(var(--offset))
+    rotate(var(--rotation)) scale(var(--scale));
+  transition:
+    transform var(--carousel-duration) cubic-bezier(0.22, 1, 0.36, 1),
+    opacity var(--carousel-duration) ease;
+}
+
+.item[data-position="-3"],
+.item[data-position="3"] {
+  --scale: 0.56;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.item[data-position="-3"] {
+  --offset: calc(-1 * var(--buffer-offset));
+  --rotation: -3deg;
 }
 
 .item[data-position="-2"] {
-  width: var(--outer-size);
-  transform: rotate(-3deg);
+  --offset: calc(-1 * var(--outer-offset));
+  --scale: 0.56;
+  --rotation: -3deg;
 }
 
 .item[data-position="-1"] {
-  transform: rotate(3deg);
+  --offset: calc(-1 * var(--near-offset));
+  --scale: 0.72;
+  --rotation: 3deg;
 }
 
 .item[data-position="0"] {
-  z-index: 1;
-  width: var(--featured-size);
+  z-index: 2;
 }
 
 .item[data-position="1"] {
-  transform: rotate(-2.5deg);
+  --offset: var(--near-offset);
+  --scale: 0.72;
+  --rotation: -2.5deg;
 }
 
 .item[data-position="2"] {
-  width: var(--outer-size);
-  transform: rotate(3deg);
+  --offset: var(--outer-offset);
+  --scale: 0.56;
+  --rotation: 3deg;
+}
+
+.item[data-position="3"] {
+  --offset: var(--buffer-offset);
+  --rotation: 3deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
 }
 
 @media (max-width: 600px) {

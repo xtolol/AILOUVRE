@@ -1,42 +1,70 @@
-/* Presents the featured artwork's static position, model caption and ratings. */
+/* Presents carousel navigation, the selected model caption and sample ratings. */
 import ScoreBreakdown from "./ScoreBreakdown.jsx";
 import styles from "../styles/ArtworkDetails.module.css";
 
 /**
- * Renders the prototype's decorative navigation and featured artwork details.
- * @param {{ artwork: import("../data/demoGallery.js").DemoArtwork, position: number, total: number }} props The featured preview entry, its one-based position and the entry count.
- * @returns {import("react").ReactElement} The static artwork details section.
+ * Renders accessible arrow controls and details for the selected sample artwork.
+ * @param {{ artwork: import("../data/demoGallery.js").DemoArtwork, position: number, total: number, onPrevious: () => void, onNext: () => void, transitioning: boolean, galleryId: string }} props The selected entry, navigation callbacks and transition state.
+ * @returns {import("react").ReactElement} The carousel controls and artwork details.
  */
-export default function ArtworkDetails({ artwork, position, total }) {
+export default function ArtworkDetails({
+  artwork,
+  position,
+  total,
+  onPrevious,
+  onNext,
+  transitioning,
+  galleryId,
+}) {
   return (
     <section className={styles.details} aria-label="Featured artwork details">
       <div className={styles.position}>
-        <svg
-          className={styles.arrow}
-          viewBox="0 0 64 32"
-          fill="none"
-          aria-hidden="true"
-          focusable="false"
+        <button
+          className={styles.arrowButton}
+          type="button"
+          aria-label="Previous artwork"
+          aria-controls={galleryId}
+          aria-disabled={transitioning || total < 2}
+          disabled={total < 2}
+          onClick={onPrevious}
         >
-          <path d="M60 19C44 14 28 12 4 16M21 5 4 16l18 11" />
-        </svg>
-        <p className={styles.counter}>
+          <svg
+            className={styles.arrow}
+            viewBox="0 0 64 32"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M60 19C44 14 28 12 4 16M21 5 4 16l18 11" />
+          </svg>
+        </button>
+        <p className={styles.counter} role="status" aria-atomic="true">
           <span className={styles.screenReaderOnly}>
-            Artwork {position} of {total}
+            Artwork {position} of {total}: {artwork.modelName}
           </span>
           <span aria-hidden="true">
             {String(position).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </span>
         </p>
-        <svg
-          className={styles.arrow}
-          viewBox="0 0 64 32"
-          fill="none"
-          aria-hidden="true"
-          focusable="false"
+        <button
+          className={styles.arrowButton}
+          type="button"
+          aria-label="Next artwork"
+          aria-controls={galleryId}
+          aria-disabled={transitioning || total < 2}
+          disabled={total < 2}
+          onClick={onNext}
         >
-          <path d="M4 19c16-5 32-7 56-3M43 5l17 11-18 11" />
-        </svg>
+          <svg
+            className={styles.arrow}
+            viewBox="0 0 64 32"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M4 19c16-5 32-7 56-3M43 5l17 11-18 11" />
+          </svg>
+        </button>
       </div>
 
       <h2 className={styles.modelName}>{artwork.modelName}</h2>

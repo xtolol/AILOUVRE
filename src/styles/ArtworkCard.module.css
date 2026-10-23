@@ -1,15 +1,11 @@
-/* Gives preview images crisp white borders and a handmade tape decoration. */
+/* Keeps frame geometry stable during movement and fades the selected tape. */
 .frame {
   position: relative;
   width: 100%;
   aspect-ratio: 1;
   margin: 0;
-  border: 8px solid #fff;
+  border: 10px solid #fff;
   background: #fff;
-}
-
-.frame[data-featured="true"] {
-  border-width: 10px;
 }
 
 .image {
@@ -37,16 +33,17 @@
     0 48%,
     5% 24%
   );
-  opacity: 0.85;
+  opacity: 0;
   transform: translateX(-50%) rotate(3deg);
+  transition: opacity var(--carousel-duration) ease;
+}
+
+.frame[data-featured="true"] .tape {
+  opacity: 0.85;
 }
 
 @media (max-width: 600px) {
   .frame {
-    border-width: 6px;
-  }
-
-  .frame[data-featured="true"] {
     border-width: 8px;
   }
 
@@ -54,5 +51,11 @@
     top: -10px;
     width: 70px;
     height: 23px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tape {
+    transition: none;
   }
 }

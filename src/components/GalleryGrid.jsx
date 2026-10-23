@@ -1,49 +1,52 @@
 /*
- * Arranges five static artwork previews around the larger featured frame.
+ * Positions five artwork previews and two hidden buffers around a virtual cursor.
  */
 import ArtworkCard from "./ArtworkCard.jsx";
 import styles from "../styles/GalleryGrid.module.css";
 
+const PREVIEW_OFFSETS = [-3, -2, -1, 0, 1, 2, 3];
+
 /**
- * Renders the carousel-shaped composition without interactive controls.
- * @param {{ artworks: import("../data/demoGallery.js").DemoArtwork[], featuredArtworkId: string }} props The ordered preview images and centered artwork identifier.
- * @returns {import("react").ReactElement} The clipped artwork preview strip.
+ * Keeps keyed artwork frames mounted while they slide between carousel positions.
+ * @param {{ artworks: import("../data/demoGallery.js").DemoArtwork[], cursor: number, id: string }} props The image entries, virtual selection and controlled gallery identifier.
+ * @returns {import("react").ReactElement|null} The artwork strip, or nothing for an empty list.
  */
-export default function GalleryGrid({ artworks, featuredArtworkId }) {
-  /**
-   * Finds the preview entry that anchors the center of the composition.
-   * @param {import("../data/demoGallery.js").DemoArtwork} artwork The entry to inspect.
-   * @returns {boolean} Whether the entry is the featured artwork.
-   */
-  function isFeaturedArtwork(artwork) {
-    return artwork.id === featuredArtworkId;
+export default function GalleryGrid({ artworks, cursor, id }) {
+  if (artworks.length === 0) {
+    return null;
   }
 
-  const featuredIndex = artworks.findIndex(isFeaturedArtwork);
+  const offsets = artworks.length === 1 ? [0] : PREVIEW_OFFSETS;
 
   /**
-   * Places an artwork relative to the fixed featured image in the preview list.
-   * @param {import("../data/demoGallery.js").DemoArtwork} artwork The image presentation data.
-   * @param {number} index The entry's position in the ordered preview list.
+   * Maps a stable virtual position onto a circular image entry and visual offset.
+   * @param {number} offset The frame's position relative to the selected artwork.
    * @returns {import("react").ReactElement} The positioned artwork list item.
    */
-  function renderArtwork(artwork, index) {
+  function renderArtwork(offset) {
+    const virtualPosition = cursor + offset;
+    const artworkIndex =
+      ((virtualPosition % artworks.length) + artworks.length) % artworks.length;
+
     return (
       <li
         className={styles.item}
-        data-position={index - featuredIndex}
-        key={artwork.id}
+        data-position={offset}
+        aria-hidden={offset !== 0}
+        aria-posinset={offset === 0 ? artworkIndex + 1 : undefined}
+        aria-setsize={offset === 0 ? artworks.length : undefined}
+        key={virtualPosition}
       >
-        <ArtworkCard artwork={artwork} featured={index === featuredIndex} />
+        <ArtworkCard artwork={artworks[artworkIndex]} featured={offset === 0} />
       </li>
     );
   }
 
   return (
-    <section className={styles.viewport} aria-label="Artwork preview">
+    <div className={styles.viewport} id={id}>
       <ul className={styles.strip} role="list">
-        {artworks.map(renderArtwork)}
+        {offsets.map(renderArtwork)}
       </ul>
-    </section>
+    </div>
   );
 }
