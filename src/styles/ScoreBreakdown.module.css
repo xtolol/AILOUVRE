@@ -6,6 +6,12 @@
   text-align: left;
 }
 
+.unjudged {
+  margin: 0 auto;
+  font-size: 15px;
+  text-align: center;
+}
+
 .row {
   display: grid;
   grid-template-columns: 110px minmax(0, 1fr);

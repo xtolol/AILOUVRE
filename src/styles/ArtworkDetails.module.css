@@ -75,6 +75,21 @@
   white-space: nowrap;
 }
 
+.generationStatus {
+  max-width: 440px;
+  margin: 0 auto 12px;
+  font-family: var(--font-model);
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.errorMessage {
+  display: block;
+  margin-top: 4px;
+  color: #793a2c;
+}
+
 @media (max-width: 600px) {
   .position {
     gap: 12px;

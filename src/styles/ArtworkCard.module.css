@@ -9,9 +9,41 @@
 }
 
 .image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.frame[data-preview="true"] .image {
+  object-fit: contain;
+  background: #eeede6;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 100%;
+  padding: clamp(12px, 3vw, 28px);
+  background: #eeede6;
+  font-family: var(--font-model);
+  font-size: clamp(11px, 3vw, 14px);
+  line-height: 1.6;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.placeholder[data-error="true"] {
+  color: #793a2c;
+  background: #f3e9e3;
+}
+
+.statusTitle {
+  font-size: 1.15em;
+  font-weight: 500;
 }
 
 .tape {

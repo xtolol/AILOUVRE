@@ -10,13 +10,13 @@ const TRANSITION_DURATION_MS = 450;
 
 /**
  * Coordinates the animated artwork strip, accessible arrows and selected details.
- * @param {{ artworks: import("../data/demoGallery.js").DemoArtwork[], initialArtworkId: string }} props The local artwork entries and initially selected identifier.
+ * @param {{ artworks: Array<import("../data/demoGallery.js").DemoArtwork|import("../contracts/generation.js").GenerationSlot>, initialArtworkId?: string }} props The demo entries or generation slots and initially selected identifier.
  * @returns {import("react").ReactElement} The interactive frontend carousel or its empty state.
  */
 export default function GalleryCarousel({ artworks, initialArtworkId }) {
   /**
-   * Finds the fixture selected when the carousel first mounts.
-   * @param {import("../data/demoGallery.js").DemoArtwork} artwork The entry to inspect.
+   * Finds the entry selected when the carousel first mounts.
+   * @param {import("../data/demoGallery.js").DemoArtwork|import("../contracts/generation.js").GenerationSlot} artwork The entry to inspect.
    * @returns {boolean} Whether the artwork matches the initial identifier.
    */
   function isInitialArtwork(artwork) {

@@ -1,10 +1,11 @@
-/* Presents carousel navigation, the selected model caption and sample ratings. */
+/* Presents navigation, the selected model's generation status and available ratings. */
+import { GENERATION_STATUS_LABELS } from "../client/generation.js";
 import ScoreBreakdown from "./ScoreBreakdown.jsx";
 import styles from "../styles/ArtworkDetails.module.css";
 
 /**
- * Renders accessible arrow controls and details for the selected sample artwork.
- * @param {{ artwork: import("../data/demoGallery.js").DemoArtwork, position: number, total: number, onPrevious: () => void, onNext: () => void, transitioning: boolean, galleryId: string }} props The selected entry, navigation callbacks and transition state.
+ * Renders accessible arrow controls and synchronized details for the selected entry.
+ * @param {{ artwork: import("../data/demoGallery.js").DemoArtwork|import("../contracts/generation.js").GenerationSlot, position: number, total: number, onPrevious: () => void, onNext: () => void, transitioning: boolean, galleryId: string }} props The selected entry, navigation callbacks and transition state.
  * @returns {import("react").ReactElement} The carousel controls and artwork details.
  */
 export default function ArtworkDetails({
@@ -68,6 +69,12 @@ export default function ArtworkDetails({
       </div>
 
       <h2 className={styles.modelName}>{artwork.modelName}</h2>
+      {artwork.status && (
+        <p className={styles.generationStatus} role="status" aria-atomic="true">
+          {GENERATION_STATUS_LABELS[artwork.status]}
+          {artwork.error && <span className={styles.errorMessage}>{artwork.error}</span>}
+        </p>
+      )}
       <ScoreBreakdown ratings={artwork.ratings} />
     </section>
   );

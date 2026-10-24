@@ -8,7 +8,7 @@ const PREVIEW_OFFSETS = [-3, -2, -1, 0, 1, 2, 3];
 
 /**
  * Keeps keyed artwork frames mounted while they slide between carousel positions.
- * @param {{ artworks: import("../data/demoGallery.js").DemoArtwork[], cursor: number, id: string }} props The image entries, virtual selection and controlled gallery identifier.
+ * @param {{ artworks: Array<import("../data/demoGallery.js").DemoArtwork|import("../contracts/generation.js").GenerationSlot>, cursor: number, id: string }} props The demo entries or generation slots, virtual selection and controlled gallery identifier.
  * @returns {import("react").ReactElement|null} The artwork strip, or nothing for an empty list.
  */
 export default function GalleryGrid({ artworks, cursor, id }) {

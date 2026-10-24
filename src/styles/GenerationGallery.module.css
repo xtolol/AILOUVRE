@@ -1,0 +1,61 @@
+/* Fits explicit development generation controls above the existing responsive carousel. */
+.controls {
+  width: min(680px, calc(100% - 40px));
+  margin: 20px auto 24px;
+  padding: 18px 20px;
+  border: 1px solid #d8ddc5;
+  border-radius: 6px;
+  background: #eff2e3;
+  text-align: center;
+}
+
+.heading {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.description,
+.progress {
+  font-family: var(--font-model);
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.description {
+  margin: 0 0 14px;
+}
+
+.progress {
+  min-height: 2lh;
+  margin: 12px 0 0;
+}
+
+.generateButton {
+  max-width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #59633d;
+  border-radius: 4px;
+  background: #e0e8c6;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.generateButton:focus-visible {
+  outline: 2px solid #394421;
+  outline-offset: 4px;
+}
+
+.generateButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .controls {
+    padding: 16px 12px;
+  }
+}
